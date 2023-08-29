@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Weather Dashboard</title>
 </head>
@@ -14,21 +15,26 @@
     </header>
 
     <section class="flex">
-    <aside>
-        <h2 class="font-bold text-2xl text-black pl-10">Search for a City:</h2>
-        <form class="align-center">
+    <aside class="m-5 space-y-5">
+        <h2 class="font-bold text-2xl text-black">Search for a City:</h2>
+        <form class="flex-col items-center space-y-5">
             <input 
                 type="text"
-                class="block min-h-[auto]rounded border-0"
+                class="block min-h-[auto] border-0"
                 id="city-search-field"
                 aria-describedby="city-search-field"
-                placeholder="Enter a City Name" />
+                placeholder="Enter a City Name"/>
             <button
                 type="submit"
-                class="inline-block rounded px-6 pb-2 pt-2.5 text-sm font-medium leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-                Submit
+                class="block rounded px-6 pb-2 pt-2.5 text-sm font-medium leading-normal text-black shadow-[0_4px_9px_-4px_blue]"
+                id="search-submit">
+                Search
             </button>
         </form>
+    <hr>
+    <section>
+        <ul id='search-history'></ul>
+    </section>
 
     </aside>
     <main class="flex-grow">
@@ -37,16 +43,16 @@
             <section class="flex items-center space-x-4">
                 <h3>Raleigh</h3>
             <section class="text-3xl font-semibold">25°C</section>
-            <section class="flex-grow text-black-600">
+            <section class="flex-grow">
                 <section class="text-sm">Clear Sky</section>
                 <section class="text-xs text-gray-500">Humidity: 55%</section>
             </section>
-            <section class="weather icon w-16 h-16 bg-blue-500 rounded-full"></section>
+            <section class="weather-icon"></section>
             </section>
         </section>
         </main>
     </section>
-
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./assets/script.js"></script>
 </body>
 </html>
