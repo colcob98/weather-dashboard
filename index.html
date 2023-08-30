@@ -42,7 +42,7 @@
         <section class="bg-white p-4 shadow-md rounded">
             <h2 class="text-lg font-semibold mb-4">Today's Weather</h2>
             <section class="flex items-center space-x-4">
-                <h3 id="city-name">Raleigh</h3>
+                <h3 id="city-name"></h3>
             <p class="text-3xl font-semibold">25°C</p>
             <section class="flex-grow">
                 <p class="text-sm" id="sky-status"></p>
@@ -52,7 +52,7 @@
         </section>
         </section>  
 
-        <section class="flex flex-col md:flex-row justify-center md:space-x-5 mt-4">
+        <section class="forecast-container flex flex-col md:flex-row justify-center md:space-x-5 mt-4">
         <section class="bg-white p-4 mt-4 shadow-md rounded md:w-1/5">
             <section class="flex-col items-center space-x-4 p-2">
                 <h2 id="day-1"></h2>
@@ -102,8 +102,11 @@
 
     </main>
     </section>
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous"></script>
     <script src="./assets/script.js"></script>
 </body>
 </html>
