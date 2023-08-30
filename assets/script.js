@@ -55,7 +55,7 @@ var getCoordinatesApi = function (input, limit = 1) {
         });
 };
 
-var getWeatherApi = function (lat, lon) {
+var getWeatherApi = function () {
     var openWeatherApiUrl = `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     fetch(openWeatherApiUrl)
@@ -64,7 +64,7 @@ var getWeatherApi = function (lat, lon) {
         })
         .then (function (data) {
             for (var i = 0; i <data.length; i++) {
-
+                console.log(data[i]);
             }
         })
         .catch (function (error) {
