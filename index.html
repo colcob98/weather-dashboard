@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/style.css">
   <title>Weather Dashboard</title>
 </head>
 
 <body class="bg-gray-200">
     <header>
-        <h1 class="bg-blue-500 text-center text-3xl text-white">Weather Dashboard</h1> 
+        <h1 class="bg-blue-500 text-center text-3xl text-white p-5">Weather Dashboard</h1> 
     </header>
 
     <section class="flex py-6">
@@ -38,17 +38,17 @@
     </section>
 
     </aside>
-    <main class="flex-grow bg-blue-500 p-6 shadow-md">
+    <main class="flex-grow bg-blue-500 mr-5 p-6 shadow-md ">
         <section class="bg-white p-4 shadow-md rounded">
             <h2 class="text-lg font-semibold mb-4">Today's Weather</h2>
             <section class="flex items-center space-x-4">
                 <h3 id="city-name"></h3>
-            <p class="text-3xl font-semibold">25°C</p>
-            <section class="flex-grow">
                 <p class="text-sm" id="sky-status"></p>
+                <section class="flex-grow">
+                <p class="text-3xl font-semibold" id="temperature"></p>
                 <p class="text-xs text-gray-500">Humidity: <span id="humidity">%</span></p>
                 <p class="text-xs text-gray-500">Wind: <span id="wind-speed"> MPH<span></span></p>
-            </section>
+                </section>
         </section>
         </section>  
 
@@ -57,6 +57,7 @@
             <section class="flex-col items-center space-x-4 p-2">
                 <h2 id="day-1"></h2>
                 <section class="text-sm" id="sky-status-day-1"></section>
+                <p class="text-s text-gray-500 font-semibold" id="temp-day-1"></p>
                 <p class="text-xs text-gray-500">Humidity: <span id="humidity-day-1">%</span></p>
                 <p class="text-xs text-gray-500">Wind: <span id="wind-speed-day-1"> MPH<span></span></p>
             </section>
@@ -66,6 +67,7 @@
             <section class="flex-col items-center space-x-4 p-2">
                 <h2 id="day-2"></h2>
                 <section class="text-sm" id="sky-status-day-2"></section>
+                <p class="text-s text-gray-500 font-semibold" id="temp-day-2"></p>
                 <p class="text-xs text-gray-500">Humidity: <span id="humidity-day-2">%</span></p>
                 <p class="text-xs text-gray-500">Wind: <span id="wind-speed-day-2"> MPH<span></span></p>
             </section>
@@ -75,6 +77,7 @@
             <section class="flex-col items-center space-x-4 p-2">
                 <h2 id="day-3"></h2>
                 <section class="text-sm" id="sky-status-day-3"></section>
+                <p class="text-s text-gray-500 font-semibold"  id="temp-day-3"></p>
                 <p class="text-xs text-gray-500">Humidity: <span id="humidity-day-3">%</span></p>
                 <p class="text-xs text-gray-500">Wind: <span id="wind-speed-day-3"> MPH<span></span></p>
             </section>
@@ -84,6 +87,7 @@
             <section class="flex-col items-center space-x-4 p-2">
                 <h2 id="day-4"></h2>
                 <section class="text-sm" id="sky-status-day-4"></section>
+                <p class="text-s text-gray-500 font-semibold"  id="temp-day-4"></p>
                 <p class="text-xs text-gray-500">Humidity: <span id="humidity-day-4">%</span></p>
                 <p class="text-xs text-gray-500">Wind: <span id="wind-speed-day-4"> MPH<span></span></p>
             </section>
@@ -93,6 +97,7 @@
             <section class="flex-col items-center space-x-4 p-2">
                 <h2 id="day-5"></h2>
                 <section class="text-sm" id="sky-status-day-5"></section>
+                <p class="text-s text-gray-500 font-semibold" id="temp-day-5"></p>
                 <p class="text-xs text-gray-500">Humidity: <span id="humidity-day-5">%</span></p>
                 <p class="text-xs text-gray-500">Wind: <span id="wind-speed-day-5"> MPH<span></span></p>
             </section>

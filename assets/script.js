@@ -55,6 +55,14 @@ var getCoordinatesApi = function (input) {
         });
 };
 
+function convertToF (kelvin) {
+    return (kelvin - 273.15) * (9/5) + 32;
+}
+
+function convertToMph (mps) {
+    return (mps * 2.2369)
+}
+
 var getWeatherApi = function () {
     var openWeatherApiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
@@ -70,9 +78,12 @@ var getWeatherApi = function () {
             var skyStatusContainer = $('#sky-status');
             skyStatusContainer.empty();
             skyStatusContainer.append(todaySkyStatus);
+            var todayTemp = Math.round(convertToF(todayData.main.temp));
+            $('#temperature').text(todayTemp + ' °F');
             $('#city-name').text(weatherData.city.name);
             $('#humidity').text(todayData.main.humidity + '%');
-            $('#wind-speed').text(todayData.wind.speed + ' MPH');
+            var todayWind = Math.round(convertToMph(todayData.wind.speed))
+            $('#wind-speed').text(todayWind + ' MPH');
 
             // forecast for the next 5 days
             var forecastDays = [];
@@ -83,6 +94,7 @@ var getWeatherApi = function () {
             forecastDays.forEach(function (forecastData, index) {
                 var forecastDay = $('#day-' + (index + 1));
                 var skyStatus = $('#sky-status-day-' + (index + 1));
+                var temperature = $('#temp-day-' + (index + 1));
                 var humidity = $('#humidity-day-' + (index + 1));
                 var windSpeed = $('#wind-speed-day-' + (index + 1));
 
@@ -93,8 +105,13 @@ var getWeatherApi = function () {
                 forecastskyStati.attr('src', `https://openweathermap.org/img/wn/${forecastData.weather[0].icon}@2x.png`);
                 skyStatus.empty();
                 skyStatus.append(forecastskyStati);
+
+                var forecastTemp = Math.round(convertToF(forecastData.main.temp));
+                temperature.text(forecastTemp + ' °F');
                 humidity.text(forecastData.main.humidity + '%');
-                windSpeed.text(forecastData.wind.speed + ' MPH');
+
+                var forecastWind = Math.round(convertToMph(forecastData.wind.speed));
+                windSpeed.text(forecastWind + ' MPH');
             });
 
         })
