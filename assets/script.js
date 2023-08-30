@@ -51,6 +51,8 @@ google.maps.event.addDomListener(window, 'load', function() {
     renderHistory();
 });
 
+
+
     /*var searchHistoryList = $('#search-history');
     var searchedItem = document.createElement('li');
     s
