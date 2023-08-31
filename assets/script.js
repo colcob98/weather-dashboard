@@ -1,12 +1,14 @@
 var submitBtn = $('#search-submit');
 var userSearch;
+//variable to store data from local storage
 var searchHistory = JSON.parse(localStorage.getItem("history")) || [];
 var apiKey = 'a2c9d397413a5b220a8838ae23f41b43';
 var clickedItem;
 var lat;
 var lon;
 
-
+//function to retreive and render data from local storage, and make each rendered item able
+//to trigger another search
 function renderHistory() {
     var searchHistoryList = $('#search-history');
     $('.searched-item').remove();
@@ -22,6 +24,7 @@ function renderHistory() {
     }
 }
 
+//upon user's search for a city, save item in local storage and trigger search for that item
 function citySubmitHandler(event) {
     event.preventDefault();
     userSearch = $('#city-search-field').val();
@@ -33,6 +36,7 @@ function citySubmitHandler(event) {
     }
 }
 
+//get the coordinates needed to call weather for the searched city
 var getCoordinatesApi = function (input) {
     var geocodingApiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${input || clickedItem}&limit=1&appid=${apiKey}`;
 
