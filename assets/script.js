@@ -28,7 +28,10 @@ function renderHistory() {
 function citySubmitHandler(event) {
     event.preventDefault();
     userSearch = $('#city-search-field').val();
-    if (userSearch !== "") {
+    var letters = /^[A-Za-z]+$/;
+    //because Geocoding API accepts numbers, 
+    //conditional to check that userSearch is only letters and it is not a duplicate search
+    if (userSearch.match(letters) && !searchHistory.includes(userSearch)) {
         searchHistory.push(userSearch);
         localStorage.setItem("history", JSON.stringify(searchHistory));
         renderHistory();
@@ -45,17 +48,25 @@ var getCoordinatesApi = function (input) {
          return response.json();
          })
         .then (function (data) {
-            for (var i = 0; i < data.length; i++) {
+            if (data) {
                 lat = data[0].lat;
                 lon = data[0].lon;
                 console.log(lat);
                 console.log(lon);
             }
-            getWeatherApi();
-            $('#city-search-field').val('');
+            if (lat !== null && lon !== null) {
+                getWeatherApi();
+                $('#city-search-field').val('');
+            } else {
+                alert('Unable to locate your city')
+            }
         })
         .catch(function (error) {
             alert('Please enter a valid city name');
+            searchHistory.pop();
+            localStorage.setItem("history", JSON.stringify(searchHistory));
+            renderHistory();
+            $('#city-search-field').val('');
         });
 };
 
@@ -119,10 +130,13 @@ var getWeatherApi = function () {
                 var forecastWind = Math.round(convertToMph(forecastData.wind.speed));
                 windSpeed.text(forecastWind + ' MPH');
             });
-
+            //because the Geocoding API accepts non-city names, setting the variables 'lat' and 'lon' to null
+            //helps to trigger error alerts for those instances
+            lat = null;
+            lon = null;
         })
         .catch(function (error) {
-            alert('Unable to find weather information. Please try again later');
+            alert('Unable to find weather information. Please enter a valid city.');
         });
 };
 
