@@ -28,10 +28,9 @@ function renderHistory() {
 function citySubmitHandler(event) {
     event.preventDefault();
     userSearch = $('#city-search-field').val();
-    var letters = /^[A-Za-z]+$/;
     //because Geocoding API accepts numbers, 
     //conditional to check that userSearch is only letters and is not a duplicate search
-    if (userSearch.match(letters) && !searchHistory.includes(userSearch)) {
+    if (userSearch !== "" && !searchHistory.includes(userSearch)) {
         searchHistory.push(userSearch);
         localStorage.setItem("history", JSON.stringify(searchHistory));
         renderHistory();

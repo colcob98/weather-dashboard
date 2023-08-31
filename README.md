@@ -12,6 +12,8 @@ A preview can be seen below.
 
 ![weather dashboard screenshot](./assets/images/colcob98.github.io_weather-dashboard_.png)
 
-# Contributions
+## Contributions
 
-In ensuring that the city search field only includes letters, the regex expression for such was accessed [here](https://www.w3resource.com/javascript/form/all-letters-field.php#:~:text=You%20can%20write%20a%20JavaScript,HTML%20form%20contains%20only%20letters.&text=To%20get%20a%20string%20contains,%2F).
+The OpenWeather API for 5-day forecast was accessed [here](https://openweathermap.org/forecast5).
+
+The Geocoding API for retrieving city coordinates was accessed [here](https://openweathermap.org/api/geocoding-api).
