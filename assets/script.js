@@ -30,7 +30,7 @@ function citySubmitHandler(event) {
     userSearch = $('#city-search-field').val();
     var letters = /^[A-Za-z]+$/;
     //because Geocoding API accepts numbers, 
-    //conditional to check that userSearch is only letters and it is not a duplicate search
+    //conditional to check that userSearch is only letters and is not a duplicate search
     if (userSearch.match(letters) && !searchHistory.includes(userSearch)) {
         searchHistory.push(userSearch);
         localStorage.setItem("history", JSON.stringify(searchHistory));
@@ -51,8 +51,6 @@ var getCoordinatesApi = function (input) {
             if (data) {
                 lat = data[0].lat;
                 lon = data[0].lon;
-                console.log(lat);
-                console.log(lon);
             }
             if (lat !== null && lon !== null) {
                 getWeatherApi();
@@ -61,6 +59,7 @@ var getCoordinatesApi = function (input) {
                 alert('Unable to locate your city')
             }
         })
+        //if user searches for a non-city, item is removed from local storage search history and alert is thrown
         .catch(function (error) {
             alert('Please enter a valid city name');
             searchHistory.pop();
@@ -70,6 +69,7 @@ var getCoordinatesApi = function (input) {
         });
 };
 
+//function to convert to appropriate metrics from OpenWeather API's kelvin and meters/second metrics
 function convertToF (kelvin) {
     return (kelvin - 273.15) * (9/5) + 32;
 }
@@ -86,13 +86,14 @@ var getWeatherApi = function () {
             return response.json();
         })
         .then(function (weatherData) {
-            
+            //render retrieved data into main container holding current day's weather
             var todayData = weatherData.list[0];
             var reformateTodayDate = dayjs(todayData.dt_txt).format('dddd, MMMM D YYYY');
             $('#today-date').text(reformateTodayDate);
             var todaySkyStatus = $('<img>');
             todaySkyStatus.attr('src', `https://openweathermap.org/img/wn/${todayData.weather[0].icon}@2x.png`);
             var skyStatusContainer = $('#sky-status');
+            //delete previously rendered icons and append new one
             skyStatusContainer.empty();
             skyStatusContainer.append(todaySkyStatus);
             var todayTemp = Math.round(convertToF(todayData.main.temp));
@@ -107,7 +108,7 @@ var getWeatherApi = function () {
             for (var i = 7; i < weatherData.list.length; i += 8) {
                 forecastDays.push(weatherData.list[i]);
             }
-            console.log(forecastDays)
+            // loop through each of the 5 forecast containers to render retrieved data
             forecastDays.forEach(function (forecastData, index) {
                 var forecastDay = $('#day-' + (index + 1));
                 var skyStatus = $('#sky-status-day-' + (index + 1));
@@ -140,7 +141,7 @@ var getWeatherApi = function () {
         });
 };
 
-
+//functions to begin upon page load
 submitBtn.on('click', citySubmitHandler);
 renderHistory();
 getCoordinatesApi('New York');
