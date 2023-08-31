@@ -71,8 +71,10 @@ var getWeatherApi = function () {
             return response.json();
         })
         .then(function (weatherData) {
-            console.log(weatherData);
+            
             var todayData = weatherData.list[0];
+            var reformateTodayDate = dayjs(todayData.dt_txt).format('dddd, MMMM D YYYY');
+            $('#today-date').text(reformateTodayDate);
             var todaySkyStatus = $('<img>');
             todaySkyStatus.attr('src', `https://openweathermap.org/img/wn/${todayData.weather[0].icon}@2x.png`);
             var skyStatusContainer = $('#sky-status');
